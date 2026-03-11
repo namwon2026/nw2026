@@ -51,6 +51,11 @@ body {
   min-height: 100vh;
 }
 
+/* 하단 고정 내비가 있는 페이지: 내비에 콘텐츠 가려지지 않도록 여백 */
+body:has(.nav-bottom) {
+  padding-bottom: 4.5rem;
+}
+
 a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
@@ -1056,7 +1061,7 @@ textarea.form-input {
 /* ─── Footer ─────────────────────────────────────────────── */
 .footer {
   text-align: center;
-  padding: 1.5rem 1rem 5rem;
+  padding: 1.5rem 1rem;
   font-size: 0.75rem;
   color: var(--gray-400);
 }
@@ -1078,16 +1083,25 @@ textarea.form-input {
 }
 
 .election-law-notice p {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: #5d4037;
-  line-height: 1.5;
+  line-height: 1.7;
   margin: 0;
+  word-break: keep-all;
 }
 
 .election-law-notice em {
   font-style: normal;
   color: var(--danger);
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.election-law-notice p strong {
+  display: inline;
+  font-size: inherit;
+  color: var(--danger);
+  margin-bottom: 0;
 }
 
 /* ─── Privacy Consent ────────────────────────────────────── */
