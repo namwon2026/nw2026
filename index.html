@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>양충모 | 시민의 목소리 - 2026 남원시장 선거</title>
+  <meta name="description" content="양충모 남원시장 후보에게 시민의 목소리를 전해주세요. 더 나은 남원을 함께 만들겠습니다.">
+  <meta property="og:title" content="양충모 후보에게 한마디">
+  <meta property="og:description" content="남원 시민의 목소리를 직접 전해주세요">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>양충모</h1>
+      <p class="subtitle">2026 남원시장 후보</p>
+      <span class="slogan">더 나은 남원을 함께 만들겠습니다</span>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">&#128233;</div>
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-label">총 누적 메시지</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">&#128197;</div>
+        <div class="stat-value" id="stat-today">0</div>
+        <div class="stat-label">오늘 메시지</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">&#129309;</div>
+        <div class="stat-value" id="stat-supporters">0</div>
+        <div class="stat-label">서포터즈 가입자</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">&#11088;</div>
+        <div class="stat-value" id="stat-new-supporters">0</div>
+        <div class="stat-label">오늘 신규 서포터즈</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <a href="write.html" class="btn btn-primary btn-lg">
+        &#9997;&#65039; 나도 한마디
+      </a>
+    </div>
+
+    <!-- Feed -->
+    <div id="feed-list" class="feed-list">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>메시지를 불러오는 중...</p>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div id="pagination" class="pagination hidden"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>양충모 후보 선거캠프</p>
+    <p>본 사이트는 공직선거법에 따라 운영됩니다.</p>
+  </footer>
+
+  <!-- Bottom Nav -->
+  <nav class="nav-bottom">
+    <a href="index.html" class="nav-item active">
+      <span class="nav-icon">&#127968;</span>
+      <span>피드</span>
+    </a>
+    <a href="write.html" class="nav-item">
+      <span class="nav-icon">&#9997;&#65039;</span>
+      <span>한마디</span>
+    </a>
+  </nav>
+
+  <script src="js/config.js"></script>
+  <script src="js/feed.js"></script>
+</body>
+</html>

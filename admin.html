@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관리자 대시보드 | 양충모 캠프</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-layout">
+
+  <!-- ════ 로그인 화면 ════ -->
+  <div id="login-section" class="login-wrapper">
+    <div class="login-card">
+      <h2>&#128272; 관리자 로그인</h2>
+      <div class="login-error" id="login-error"></div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-id">아이디</label>
+          <input type="text" id="login-id" class="form-input" placeholder="관리자 아이디" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-pw">비밀번호</label>
+          <input type="password" id="login-pw" class="form-input" placeholder="비밀번호" autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">로그인</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ════ 대시보드 ════ -->
+  <div id="dashboard-section" class="hidden">
+
+    <!-- Admin Header -->
+    <header class="admin-header">
+      <h1>&#128202; 양충모 캠프 관리</h1>
+      <div>
+        <span class="admin-user" id="admin-username"></span>
+        <button class="btn btn-sm" style="background:rgba(255,255,255,0.15); color:#fff; margin-left:0.5rem;" onclick="adminLogout()">로그아웃</button>
+      </div>
+    </header>
+
+    <div class="container-wide" style="padding-top: 1rem; padding-bottom: 2rem;">
+
+      <!-- KPI Cards -->
+      <div class="admin-stats" id="admin-kpi">
+        <div class="kpi-card">
+          <div class="kpi-label">총 메시지</div>
+          <div class="kpi-value" id="kpi-total">-</div>
+          <div class="kpi-sub">오늘 <span id="kpi-today">0</span>건</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">서포터즈</div>
+          <div class="kpi-value" id="kpi-supporters">-</div>
+          <div class="kpi-sub">오늘 <span id="kpi-new-sup">0</span>명</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">권리당원</div>
+          <div class="kpi-value" id="kpi-rights">-</div>
+          <div class="kpi-sub">확인된 작성자</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">미답장</div>
+          <div class="kpi-value" id="kpi-no-reply">-</div>
+          <div class="kpi-sub">카톡 미발송</div>
+        </div>
+        <div class="kpi-card kpi-danger">
+          <div class="kpi-label">즉시응답 필요</div>
+          <div class="kpi-value" id="kpi-immediate">-</div>
+          <div class="kpi-sub">24시간 내 대응</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">일별 추이</div>
+          <div id="mini-chart" class="bar-chart" style="height:50px;"></div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="admin-filters">
+        <select id="filter-priority">
+          <option value="all">전체 등급</option>
+          <option value="immediate">즉시응답 필요</option>
+          <option value="medium">중요도 중간</option>
+          <option value="low">중요도 낮음</option>
+          <option value="unclassified">미분류</option>
+          <option value="spam">스팸/부적절</option>
+        </select>
+        <select id="filter-sort">
+          <option value="newest">최신순</option>
+          <option value="priority">등급 우선</option>
+          <option value="no_reply">미답장 우선</option>
+        </select>
+        <select id="filter-supporter">
+          <option value="">서포터즈 전체</option>
+          <option value="yes">서포터즈만</option>
+        </select>
+        <select id="filter-rights">
+          <option value="">권리당원 전체</option>
+          <option value="yes">권리당원만</option>
+        </select>
+        <input type="text" id="filter-search" placeholder="이름, 전화번호, 내용 검색..." style="flex:1; min-width:150px;">
+        <button class="btn btn-sm btn-primary" onclick="loadAdminMessages()">검색</button>
+        <button class="btn btn-sm btn-secondary" onclick="exportCSV()">&#128229; 내보내기</button>
+      </div>
+
+      <!-- Message Table -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>등급</th>
+              <th>이름</th>
+              <th>전화번호</th>
+              <th>메시지</th>
+              <th>권리당원</th>
+              <th>서포터즈</th>
+              <th>작성일</th>
+              <th>카톡</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody id="admin-tbody">
+            <tr><td colspan="9" class="loading"><div class="spinner"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div id="admin-pagination" class="pagination"></div>
+    </div>
+  </div>
+
+  <!-- ════ 답장 모달 ════ -->
+  <div class="modal-overlay" id="reply-modal">
+    <div class="modal">
+      <h3>&#128172; 카카오톡 답장</h3>
+      <p style="font-size:0.8rem; color:var(--gray-500); margin-bottom:0.75rem;">
+        <strong id="reply-target-name"></strong>님에게 보내는 답장
+      </p>
+      <div class="form-group">
+        <textarea id="reply-text" class="form-input" rows="4" placeholder="답장 내용을 입력하세요 (최대 1000자)" maxlength="1000"></textarea>
+        <div class="char-count"><span id="reply-char">0</span> / 1000</div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-sm btn-secondary" onclick="closeReplyModal()">취소</button>
+        <button class="btn btn-sm btn-primary" onclick="sendReply()">발송</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ 삭제 확인 모달 ════ -->
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal">
+      <h3>&#9888;&#65039; 메시지 삭제</h3>
+      <p style="font-size:0.85rem; color:var(--gray-600); margin-bottom:1rem;" id="delete-confirm-text">
+        정말 삭제하시겠습니까?
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-sm btn-secondary" onclick="closeDeleteModal()">취소</button>
+        <button class="btn btn-sm btn-danger" id="delete-confirm-btn" onclick="confirmDelete()">삭제</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
