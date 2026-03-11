@@ -59,13 +59,30 @@ body:has(.nav-bottom) {
 a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+/* ─── SPA Page Transitions ──────────────────────────────── */
+.page-wrapper {
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.page-wrapper.page-exit {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.page-wrapper.page-enter {
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: pageIn 0.2s ease forwards;
+}
+@keyframes pageIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
 img { max-width: 100%; height: auto; }
 
 /* ─── Hero Banner ────────────────────────────────────────── */
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, #2563eb 50%, #3b82f6 100%);
   color: #fff;
-  padding: 1.2rem 1rem 3rem;
+  padding: 1.2rem 1rem 4.2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -453,7 +470,7 @@ textarea.form-input {
 }
 
 .checkbox-label {
-  display: flex;
+  display: flex !important;
   align-items: flex-start;
   gap: 0.5rem;
   cursor: pointer;
@@ -465,9 +482,8 @@ textarea.form-input {
   width: 18px;
   height: 18px;
   accent-color: var(--primary);
-  margin-top: 1px;
   flex-shrink: 0;
-  align-self: flex-start;
+  margin-top: 2px;
 }
 
 .checkbox-label .check-desc {
@@ -482,7 +498,7 @@ textarea.form-input {
   padding: 0.9rem;
   font-size: 1.05rem;
   margin-top: 0.5rem;
-  text-align: center;
+  justify-content: center;
 }
 
 /* ─── Success Screen ─────────────────────────────────────── */
@@ -1138,7 +1154,7 @@ textarea.form-input {
   .checkbox-label input[type="checkbox"] {
     width: 22px;
     height: 22px;
-    margin-top: 0;
+    margin-top: 0.1em;
   }
 
   .btn {
@@ -1175,7 +1191,7 @@ textarea.form-input {
   .admin-stats { grid-template-columns: repeat(3, 1fr); }
 
   .hero h1 { font-size: 2.2rem; }
-  .hero { padding: 1.5rem 1.5rem 2rem; }
+  .hero { padding: 1.5rem 1.5rem 3.5rem; }
 }
 
 @media (min-width: 768px) {

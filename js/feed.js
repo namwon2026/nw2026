@@ -10,9 +10,14 @@ const cheeredSet = new Set(JSON.parse(localStorage.getItem('cheered') || '[]'));
 const CACHE_KEY = 'feed_cache_';
 const CACHE_TTL = 60000; // 1분 캐시
 
-document.addEventListener('DOMContentLoaded', () => {
+function initFeed() {
+  currentPage = 1;
   loadFeed(1);
-});
+}
+
+// 라우터 등록 + 초기 로드
+if (typeof Router !== 'undefined') Router.register('index.html', initFeed);
+document.addEventListener('DOMContentLoaded', initFeed);
 
 async function loadFeed(page) {
   currentPage = page;

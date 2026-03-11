@@ -20,7 +20,7 @@ function isValidName(name) {
 }
 
 // ─── DOM 요소 ───────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
+function initWrite() {
   const form = document.getElementById('message-form');
   const nameInput = document.getElementById('input-name');
   const phoneInput = document.getElementById('input-phone');
@@ -247,7 +247,11 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.textContent = '메시지 보내기';
     }
   });
-});
+}
+
+// 라우터 등록 + 초기 로드
+if (typeof Router !== 'undefined') Router.register('write.html', initWrite);
+document.addEventListener('DOMContentLoaded', initWrite);
 
 function showError(errorId, inputEl) {
   const errorEl = document.getElementById(errorId);

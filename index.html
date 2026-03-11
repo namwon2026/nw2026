@@ -20,6 +20,7 @@
 </head>
 <body>
 
+  <div id="page-wrapper" class="page-wrapper">
   <!-- Hero Banner -->
   <section class="hero">
     <div class="hero-content">
@@ -78,6 +79,7 @@
     <p>양충모 후보 선거캠프</p>
     <p>본 사이트는 공직선거법에 따라 운영됩니다.</p>
   </footer>
+  </div><!-- /page-wrapper -->
 
   <!-- Bottom Nav -->
   <nav class="nav-bottom">
@@ -92,6 +94,9 @@
   </nav>
 
   <script src="js/config.js" defer></script>
+  <script src="js/router.js" defer></script>
   <script src="js/feed.js" defer></script>
+  <script src="js/write.js" defer></script>
+  <script>document.addEventListener('DOMContentLoaded', () => Router.init());</script>
 </body>
 </html>
