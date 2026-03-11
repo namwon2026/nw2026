@@ -79,7 +79,7 @@ function renderMessageCard(msg) {
       <div class="card-body">${messageText.replace(/\n/g, '<br>')}</div>
       <div class="card-footer">
         <button class="cheer-btn ${cheered ? 'cheered' : ''}" onclick="handleCheer(this, '${msg.id}')" ${cheered ? 'disabled' : ''}>
-          &#10084;&#65039; 응원 <span class="cheer-count">${cheersCount > 0 ? cheersCount : ''}</span>
+          &#10084;&#65039; 응원 <span class="cheer-count">${cheersCount > 0 ? cheersCount : 0}</span>
         </button>
       </div>
     </div>
@@ -102,7 +102,9 @@ async function handleCheer(btn, messageId) {
       cheeredSet.add(messageId);
       localStorage.setItem('cheered', JSON.stringify([...cheeredSet]));
       const countEl = btn.querySelector('.cheer-count');
-      countEl.textContent = res.cheers;
+      const newCount = res.cheers || 1;
+      countEl.textContent = newCount;
+      countEl.style.fontWeight = '700';
       showToast('응원했습니다!', 'success');
     } else {
       // 실패 시 롤백
