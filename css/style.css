@@ -977,6 +977,12 @@ textarea.form-input {
   font-weight: 600;
 }
 
+.election-law-notice .law-ref {
+  font-size: 0.72rem;
+  color: #8d6e63;
+  margin-top: 0.25rem;
+}
+
 /* ─── Privacy Consent ────────────────────────────────────── */
 .consent-box {
   background: var(--gray-50);
@@ -985,8 +991,6 @@ textarea.form-input {
   padding: 0.8rem;
   font-size: 0.78rem;
   color: var(--gray-500);
-  max-height: 100px;
-  overflow-y: auto;
   margin-bottom: 0.75rem;
   line-height: 1.5;
 }
