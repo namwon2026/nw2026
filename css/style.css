@@ -65,7 +65,7 @@ img { max-width: 100%; height: auto; }
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, #2563eb 50%, #3b82f6 100%);
   color: #fff;
-  padding: 1.2rem 1rem 1.5rem;
+  padding: 1.2rem 1rem 3rem;
   text-align: center;
   position: relative;
   overflow: hidden;
