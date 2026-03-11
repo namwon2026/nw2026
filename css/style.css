@@ -710,6 +710,19 @@ textarea.form-input {
   white-space: nowrap;
 }
 
+.reply-preview {
+  margin-top: 4px;
+  padding: 3px 6px;
+  background: var(--primary-light);
+  border-left: 2px solid var(--primary);
+  border-radius: 3px;
+  font-size: 0.72rem;
+  color: var(--primary-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Priority badges */
 .priority-badge {
   display: inline-block;

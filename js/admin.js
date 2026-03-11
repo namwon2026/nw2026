@@ -203,6 +203,10 @@ function renderAdminRow(msg) {
     ? escapeHtml(msg.message.substring(0, 40)) + '...'
     : escapeHtml(msg.message);
 
+  const replyPreview = msg.admin_reply
+    ? `<div class="reply-preview">&#128172; ${escapeHtml(msg.admin_reply.length > 30 ? msg.admin_reply.substring(0, 30) + '...' : msg.admin_reply)}</div>`
+    : '';
+
   const kakaoIcon = msg.kakao_sent ? '&#10004;' : (msg.admin_reply ? '&#10004;' : '&#9711;');
   const kakaoColor = msg.kakao_sent ? 'var(--success)' : 'var(--gray-400)';
 
@@ -219,7 +223,7 @@ function renderAdminRow(msg) {
       </td>
       <td><strong>${escapeHtml(msg.name)}</strong></td>
       <td style="white-space:nowrap; font-size:0.75rem;">${escapeHtml(msg.phone)}</td>
-      <td class="msg-preview" title="${escapeHtml(msg.message)}">${preview}</td>
+      <td class="msg-preview" title="${escapeHtml(msg.message)}">${preview}${replyPreview}</td>
       <td>${msg.is_rights_member ? '<span style="color:var(--success)">&#10004;</span>' : '-'}</td>
       <td>${msg.is_supporter ? '<span style="color:var(--accent)">&#10004;</span>' : '-'}</td>
       <td style="white-space:nowrap; font-size:0.72rem;">${formatDate(msg.created_at)}</td>
