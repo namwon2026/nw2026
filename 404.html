@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이지를 찾을 수 없습니다 - 양충모</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Pretendard Variable', -apple-system, sans-serif;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .error-page {
+      text-align: center;
+      max-width: 400px;
+    }
+    .error-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .error-code {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1a56db;
+      margin-bottom: 0.5rem;
+    }
+    .error-msg {
+      font-size: 1.1rem;
+      color: #4b5563;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .home-btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: #1a56db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .home-btn:hover { background: #1240a8; }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <div class="error-icon">&#128270;</div>
+    <div class="error-code">404</div>
+    <p class="error-msg">
+      요청하신 페이지를 찾을 수 없습니다.<br>
+      주소를 다시 확인해주세요.
+    </p>
+    <a href="/nw2026/" class="home-btn">메인으로 돌아가기</a>
+  </div>
+</body>
+</html>
