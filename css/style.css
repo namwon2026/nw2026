@@ -460,8 +460,9 @@ textarea.form-input {
   width: 18px;
   height: 18px;
   accent-color: var(--primary);
-  margin-top: 2px;
+  margin-top: 1px;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .checkbox-label .check-desc {
@@ -977,12 +978,6 @@ textarea.form-input {
   font-weight: 600;
 }
 
-.election-law-notice .law-ref {
-  font-size: 0.72rem;
-  color: #8d6e63;
-  margin-top: 0.25rem;
-}
-
 /* ─── Privacy Consent ────────────────────────────────────── */
 .consent-box {
   background: var(--gray-50);
@@ -1015,6 +1010,7 @@ textarea.form-input {
   .checkbox-label input[type="checkbox"] {
     width: 22px;
     height: 22px;
+    margin-top: 0;
   }
 
   .btn {
