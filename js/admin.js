@@ -283,7 +283,7 @@ function renderAdminRow(msg) {
     : '';
 
   const hasReply = msg.kakao_sent || msg.admin_reply;
-  const replyIcon = hasReply ? '&#10004;' : 'no';
+  const replyIcon = hasReply ? 'O' : 'X';
   const replyColor = hasReply ? 'var(--success)' : 'var(--danger)';
 
   return `
@@ -300,8 +300,8 @@ function renderAdminRow(msg) {
       <td><strong>${escapeHtml(msg.name)}</strong></td>
       <td style="white-space:nowrap; font-size:0.75rem;">${escapeHtml(msg.phone)}</td>
       <td class="msg-preview" data-id="${escapeHtml(msg.id)}" onclick="openDetailModal(this.dataset.id)" style="cursor:pointer;" title="클릭하여 상세보기">${preview}${replyPreview}</td>
-      <td>${msg.is_rights_member ? '<span style="color:var(--success)">&#10004;</span>' : '-'}</td>
-      <td>${msg.is_supporter ? '<span style="color:var(--accent)">&#10004;</span>' : '-'}</td>
+      <td style="text-align:center;font-weight:700;color:${msg.is_rights_member ? 'var(--success)' : 'var(--gray-300)'}">${msg.is_rights_member ? 'O' : 'X'}</td>
+      <td style="text-align:center;font-weight:700;color:${msg.is_supporter ? 'var(--accent)' : 'var(--gray-300)'}">${msg.is_supporter ? 'O' : 'X'}</td>
       <td style="white-space:nowrap; font-size:0.72rem;">${formatDate(msg.created_at)}</td>
       <td style="color:${replyColor};${hasReply ? '' : 'cursor:pointer;font-weight:700;'}" ${hasReply ? '' : `data-id="${escapeHtml(msg.id)}" data-name="${escapeHtml(msg.name)}" data-reply="" onclick="openReplyModal(this.dataset.id, this.dataset.name, this.dataset.reply)"`}>${replyIcon}</td>
       <td>
