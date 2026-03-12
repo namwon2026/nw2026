@@ -306,8 +306,8 @@ function renderAdminRow(msg) {
       <td style="color:${replyColor};${hasReply ? '' : 'cursor:pointer;font-weight:700;'}" ${hasReply ? '' : `data-id="${escapeHtml(msg.id)}" data-name="${escapeHtml(msg.name)}" data-reply="" onclick="openReplyModal(this.dataset.id, this.dataset.name, this.dataset.reply)"`}>${replyIcon}</td>
       <td>
         <div class="action-btns">
-          <button class="action-btn btn-reply" data-id="${escapeHtml(msg.id)}" data-name="${escapeHtml(msg.name)}" data-reply="${escapeHtml(msg.admin_reply || '')}" onclick="openReplyModal(this.dataset.id, this.dataset.name, this.dataset.reply)">&#128172;</button>
-          <button class="action-btn btn-delete" data-id="${escapeHtml(msg.id)}" onclick="openDeleteModal(this.dataset.id)">&#128465;</button>
+          <button class="action-btn btn-reply" title="답변" data-id="${escapeHtml(msg.id)}" data-name="${escapeHtml(msg.name)}" data-reply="${escapeHtml(msg.admin_reply || '')}" onclick="openReplyModal(this.dataset.id, this.dataset.name, this.dataset.reply)">&#128172;</button>
+          <button class="action-btn btn-delete" title="삭제" data-id="${escapeHtml(msg.id)}" onclick="openDeleteModal(this.dataset.id)">&#128465;</button>
         </div>
       </td>
     </tr>

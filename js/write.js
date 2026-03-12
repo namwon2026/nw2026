@@ -159,8 +159,13 @@ function initWrite() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Honeypot 봇 체크
-    if (document.getElementById('hp-email').value) return;
+    // Honeypot 봇 체크 (브라우저 자동완성 오탐 방지)
+    const hpField = document.getElementById('hp-email');
+    if (hpField.value) {
+      hpField.value = '';  // 자동완성으로 채워진 경우 초기화 후 재시도 허용
+      showToast('잠시 후 다시 시도해주세요.', 'error');
+      return;
+    }
 
     // 유효성 검증
     let valid = true;
@@ -199,8 +204,10 @@ function initWrite() {
     }
 
     // 동의 검증
-    if (!document.getElementById('check-consent').checked) {
-      showError('error-consent');
+    const consentCheck = document.getElementById('check-consent');
+    if (!consentCheck.checked) {
+      showError('error-consent', consentCheck);
+      if (!firstErrorEl) firstErrorEl = consentCheck;
       valid = false;
     }
 
@@ -213,7 +220,8 @@ function initWrite() {
       return;
     }
 
-    // 제출
+    // 중복 제출 방지
+    if (submitBtn.disabled) return;
     submitBtn.disabled = true;
     submitBtn.textContent = '전송 중...';
 
