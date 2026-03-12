@@ -10,86 +10,42 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="prefetch" href="list.html">
   <link rel="prefetch" href="write.html">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-      font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      overflow: hidden;
-    }
-
+    /* Landing page overrides */
     body {
+      background: #d6e4f0;
       display: flex;
       flex-direction: column;
-      background: #d6e4f0;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      padding-bottom: 0 !important;
     }
 
-    /* Background Image */
     .landing-bg {
       flex: 1;
+      min-height: 0;
       background: url('sot_bg.png') center top / contain no-repeat;
       background-color: #d6e4f0;
-      position: relative;
     }
 
-    /* Bottom Navigation */
-    .nav-bottom {
-      background: #fff;
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      padding: 0;
-      padding-bottom: env(safe-area-inset-bottom);
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
-      flex-shrink: 0;
+    /* Desktop: constrain width for portrait image */
+    @media (min-width: 640px) {
+      .landing-bg {
+        background-size: auto 100%;
+        background-position: center top;
+      }
     }
 
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.25rem;
-      flex: 1;
-      padding: 0.75rem 0.5rem;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #6b7280;
-      text-decoration: none;
-      transition: color 0.2s, background 0.2s;
-      position: relative;
-    }
-
-    .nav-item:hover {
-      text-decoration: none;
-      color: #1a56db;
-      background: #f0f4ff;
-    }
-
-    .nav-item:active {
-      background: #e0e8ff;
-    }
-
-    .nav-item .nav-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-
-    .nav-item .nav-label {
-      font-size: 0.82rem;
-      letter-spacing: -0.02em;
-    }
-
-    /* Divider between nav items */
-    .nav-divider {
-      width: 1px;
-      background: #e5e7eb;
-      margin: 0.5rem 0;
-      flex-shrink: 0;
+    /* Very wide screens */
+    @media (min-width: 1200px) {
+      .landing-bg {
+        background-size: auto 95%;
+        background-position: center center;
+      }
     }
   </style>
 </head>
@@ -97,15 +53,15 @@
 
   <div class="landing-bg"></div>
 
+  <!-- Bottom Nav (same as list.html / write.html) -->
   <nav class="nav-bottom">
     <a href="list.html" class="nav-item">
       <span class="nav-icon">&#127968;</span>
-      <span class="nav-label">디지털 소통실</span>
+      <span>디지털 소통실</span>
     </a>
-    <div class="nav-divider"></div>
     <a href="write.html" class="nav-item">
       <span class="nav-icon">&#9997;&#65039;</span>
-      <span class="nav-label">나도 한마디</span>
+      <span>나도 한마디</span>
     </a>
   </nav>
 
