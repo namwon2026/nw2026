@@ -31,16 +31,18 @@ const Router = (() => {
       navigateTo(target, href);
     });
 
-    // hover 시 프리패치 (터치 디바이스는 touchstart)
-    document.addEventListener('pointerenter', (e) => {
+    // hover/touchstart 시 프리패치
+    const prefetchLink = (e) => {
       const link = e.target.closest('a[href$=".html"]');
       if (!link) return;
       const href = link.getAttribute('href');
       const url = new URL(href, location.href).pathname;
       if (!cache[url]) {
-        fetch(href).then(r => r.text()).then(html => { cache[url] = html; });
+        fetch(href).then(r => r.text()).then(html => { cache[url] = html; }).catch(() => {});
       }
-    }, true);
+    };
+    document.addEventListener('pointerenter', prefetchLink, true);
+    document.addEventListener('touchstart', prefetchLink, { passive: true });
 
     // 뒤로/앞으로 가기
     window.addEventListener('popstate', () => {
@@ -98,6 +100,9 @@ const Router = (() => {
     const doc = parser.parseFromString(html, 'text/html');
 
     document.title = doc.title;
+
+    // body class 동기화 (list-page, write-page 등 배경색 전환)
+    document.body.className = doc.body.className;
 
     const newWrapper = doc.getElementById('page-wrapper');
     const curWrapper = document.getElementById('page-wrapper');

@@ -112,9 +112,10 @@ function setCachedFeed(page, data) {
 
 function renderMessageCard(msg) {
   const fullEscaped = escapeHtml(msg.message);
+  const previewEscaped = escapeHtml(msg.message.substring(0, 100));
   const messageText = msg.message.length > 100
-    ? `${escapeHtml(msg.message.substring(0, 100))}<span class="more-btn" data-full="${fullEscaped.replace(/"/g, '&quot;')}" onclick="this.parentElement.innerHTML=this.dataset.full.replace(/\\n/g,'<br>')">&hellip; 더보기</span>`
-    : escapeHtml(msg.message);
+    ? `${previewEscaped}<span class="more-btn" data-full="${fullEscaped.replace(/"/g, '&quot;')}" onclick="expandMessage(this)">&hellip; 더보기</span>`
+    : fullEscaped;
 
   const badges = [];
   if (msg.is_supporter) badges.push('<span class="badge badge-supporter">&#129309; 서포터즈</span>');
@@ -138,6 +139,11 @@ function renderMessageCard(msg) {
       </div>
     </div>
   `;
+}
+
+function expandMessage(btn) {
+  const full = btn.dataset.full;
+  btn.parentElement.innerHTML = full.replace(/\n/g, '<br>');
 }
 
 async function handleCheer(btn, messageId) {
